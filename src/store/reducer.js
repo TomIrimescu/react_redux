@@ -29,7 +29,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         results: state.results.concat({id: new Date(), value: state.counter})
         // concat() updates array immutably vs. push() method
-      }
+      };
+    case "DELETE_RESULT":
+      // const id = 2;
+      // const newArray = [...state.results];
+      // newArray.results.splice(id, 1);
+      const updatedArray = state.results.filter((result) => result.id !== action.resultElId);
+      // filter() returns a new array immutably
+      return {
+        ...state,
+        results: updatedArray
+      };
   }
   return state;
 };
